@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Ashlar data modelling specification",
+  "description": "Data modelling specification for the Ashlar project",
+  "type": "object",
+  "definitions": {
+    "abstractBaseField": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "uuid",
+        "created",
+        "modified"
+      ]
+    },
+    "RecordType": {
+      "title": "Type",
+      "description": "A type for a Record, independent of any particular schema",
+      "allOf": [
+        { "$ref": "#/definitions/abstractBaseField" }
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "plural_label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean",
+          "default": "true"
+        }
+      },
+      "required": [
+        "label",
+        "plural_label",
+        "active"
+      ]
+    },
+    "RecordSchema": {
+      "title": "Schema",
+      "description": "A schema for a Record",
+      "allOf": [
+        { "$ref": "#/definitions/abstractBaseField" }
+      ],
+      "properties": {
+        "recordTypeId": {
+          "type": "string",
+          "format": "uuid"
+        }
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "schema": {
+          "type": "object"
+        },
+        "nextVersionId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "recordTypeId",
+        "version",
+        "schema"
+      ]
+    },
+    "Record": {
+      "title": "Record",
+      "description": "An entity of a particular Type, following a specific Schema",
+      "allOf": [
+        { "$ref": "#/definitions/abstractBaseField" }
+      ],
+      "properties": {
+        "schemaId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "data": {
+          "type": "object",
+        },
+        "archived": {
+          "type": "boolean",
+          "default": "false"
+        }
+      },
+      "required": [
+        "schemaId",
+        "data",
+        "archived"
+      ]
+    }
+  }
+}
