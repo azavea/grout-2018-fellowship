@@ -63,7 +63,7 @@
         "recordTypeId": {
           "type": "string",
           "format": "uuid"
-        }
+        },
         "version": {
           "type": "integer",
           "format": "int32"
