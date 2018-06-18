@@ -29,3 +29,8 @@ In no particular order:
 - Improve the syntax for JSON queries
     x. Prior art: [GraphQL](https://graphql.org/) and
        [glom](https://sedimental.org/glom_restructured_data.html)
+- Bring features into Ashlar (like user management) that currenty exist only
+  in DRIVER
+- Package Ashlar for easy customization and deployment:
+    x. as a standalone app (DB server)
+    x. as a Django app/plugin
