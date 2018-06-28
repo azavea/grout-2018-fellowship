@@ -29,12 +29,23 @@ In evaluating frameworks, we're looking for one that will be:
    guidance on architecting the app
 3. Exciting for me to learn to use
 
-Below, I review a few possibilities I considered based on these criteria.
+Based on these criteria, I evaluated four frameworks:
+
+- [React](#react)
+- [Angular](#angular)
+- [Ember](#ember)
+- [Vue.js](#vue.js)
+
+Below, I review the pros and cons of these four frameworks.
 
 ### React
 
 [React](https://reactjs.org/) is a JavaScript library for building stateful
-user interfaces.
+user interfaces. React focuses on providing a core library for building
+components in pure JavaScript (with a markup extension language called JSX),
+but it also comes with a large ecosystem of extensions for building full-featured
+web apps, many of them (like [Redux](https://redux.js.org/)) built by core
+contributors to the React project.
 
 #### Pros
 
@@ -46,7 +57,7 @@ user interfaces.
   the component model.
 
 - React is mostly pure JavaScript, with some markup added in the form of JSX.
-  This is appealing to me from a developer perspective, since I hate dealing
+  This is appealing to me from a developer perspective, since I don't like dealing
   with templates and I want more experience writing complex JavaScript.
 
 - Although it has the same problems as many hybrid mobile frameworks, React Native
@@ -67,18 +78,23 @@ user interfaces.
 
 - Derek and Kathryn may not have as much experience in React as in Angular (?).
 
+- Although many posts cite React as being simpler to learn than Angular, the
+  learning curve seems like it will still be quite high, since I have to get
+  acquainted with JSX syntax alongside the full conceptual framework.
+
 ### Angular
 
 [Angular](https://angular.io/) is a web app framework written in JavaScript,
-with TypeScript supported as a first-class citizen. 
+with TypeScript supported as a first-class citizen. Angular focuses on providing
+a full suite of opinionated tools for building complex, stateful web apps.
 
 #### Pros
 
 - DRIVER is written in Angular 1.x, which has two important benefits:
     1. Many of the existing Ashlar components, like the schema editor and
-       the data collector, are Angular 1.x apps
-    2. Should DRIVER want to upgrade to Ashlar 2.0 during the next round of
-       development, it would be easy to interoperate with any work I do to
+       the data collector, are Angular 1.x apps.
+    2. Should DRIVER want to upgrade to Ashlar 2+ during the next round of
+       development, it would be easy to integrate with any work I do to
        extend the Ashlar suite using Angular (e.g. [bringing the schema editor
        up to date](https://github.com/azavea/ashlar-2018-fellowship/issues/21))
 
@@ -87,69 +103,125 @@ with TypeScript supported as a first-class citizen.
 
 #### Cons
 
-- As a full-featured framework, Angular has a lot of framework-specific syntax
-  that I'll have to learn.
+- As a full-featured framework, Angular has a lot of API-specific syntax
+  and a complicated conceptual architecture that I'll have to learn.
 
 - Most of the "Angular vs. React" blog posts I was able to find come out in
   favor of React, for a number of reasons (see [further
   reading](#further-reading) for links). This doesn't necessarily sway me, since
-  I don't generally put much stock in JS-framework hype. However, one consistent
-  criticism that came up in every piece I read was that Angular relies heavily
-  on markup and templating, which is the part of frontend development that is
-  least appealing to me. I suspect I'll have less fun learning Angular than
-  I would learning React.
+  I don't put much stock in hype, but a consistent criticism that came up in
+  every piece I read was that Angular relies heavily on keeping markup and
+  templating separate from JavaScript, which is a part of frontend development that
+  frustrates me me. Skimming the docs, I suspect I'll have less fun learning Angular than
+  I would learning other frameworks I considered (specifically React and Vue.js).
 
-- Although TypeScript is not required to use Angular, I would want to learn it
-  for the sake of learning it anyway. This would further increase the amount
-  of time it would take me to get up to speed writing Angular.
+- Although TypeScript is not required to use Angular, all of the docs are
+  written in TypeScript, and I would want to learn it
+  for the sake of learning it anyway. While I'm interested in learning
+  TypeScript, this would further increase the amount
+  of time it would take me to get up to speed writing code for Angular.
 
 - Angular purports to support native mobile applications, but I couldn't find
   any documentation on their website actually proving this. It seems like you
   have to use a third-party hybrid app framework like [Ionic](https://ionicframework.com/),
   or even [React Native](https://github.com/angular/react-native-renderer).
 
+### Ember
 
-### Elm
-
-[Elm](http://elm-lang.org/) is a purely functional language for building
-web apps that compiles to JavaScript.
+[Ember](https://emberjs.com/) is a frontend framework for building web apps
+using a standard model-view-controller (MVC) architecture.
 
 #### Pros
 
-- The Geospatial Insights team is starting to use Elm in production; using it
-  for the Ashlar demo app could be a good way of testing the limits of its
-  usefulness in a relatively low-stakes context.
-
-- Elm is a purely functional language, which aligns with my goal of continuing
-  to learn more about functional programming. Of the three options I considered
-  (React, Angular, and Elm), I'm personally most interested in learning more
-  about Elm.
+- Ember seems to rely on traditional MVC concepts like [routers, models, and
+  views](https://guides.emberjs.com/release/getting-started/core-concepts/).
+  As a Django developer, I'll be comfortable with these concepts
+  out of the gate.
 
 #### Cons
 
-- Elm involves a whole language with its own syntax in addition to frameworks/
-  libraries for common web app functions. This will greatly increase the
-  overhead costs for learning.
+- As an MVC framework, Ember represents the smallest departure from concepts
+  that I'm currently familiar with. This could make development easier, but
+  it also means I'm not as excited to learn it. 
 
-- The Elm community is much smaller than the JS community, and in general Elm
-  [makes it intentionally difficult to interact with JS
-  libraries](https://guide.elm-lang.org/interop/javascript.html#step-2-talk-to-javascript).
-  This means that in Elm, we'll have much less flexibility to leverage existing
-  open source code to build the app.
+- Derek and Kathryn don't have any experience with Ember, and so couldn't
+  give as detailed guidance.
 
-- Since Elm does not easily interoperate with JS, we'll need to either forego
-  the [Ashlar JavaScript API](https://github.com/azavea/ashlar-2018-fellowship/issues/20),
-  write it in Elm instead, or write Elm bindings for it.
+- Ember is [highly opinionated](https://vuejs.org/v2/guide/comparison.html#Ember),
+  which could contribute to project overhead and startup costs.
+
+### Vue.js
+
+[Vue.js](https://vuejs.org/) is a library and a framework for building
+web apps in JavaScript. Its focus is on composable views, providing a core
+library for this functionality that can optionally scale up to a full framework
+with batteries included.
+
+#### Pros
+
+- Small, both in size (~20kb zipped/minified) and in setup (can simply
+  include it in a `script` tag, or set up more complicated build procedures).
+
+- Fast learning time: the docs suggest that it takes a developer typically less
+  than a day to understand the key concepts and start building ([source](https://vuejs.org/v2/guide/comparison.html#Scale)).
+
+- Built on a standard HTML templating system, but also [supports
+  JSX](https://vuejs.org/v2/guide/comparison.html#HTML-amp-CSS).
+
+- Thorough, well-paced, and fun to read [documentation](https://vuejs.org/v2/guide/).
+  Vue.js was the only framework I considered that offered [detailed
+  comparisons with other similar frameworks](https://vuejs.org/v2/guide/comparison.html),
+  including comparisons with React, Angular, and Ember.
+
+#### Cons
+
+- Native rendering is [still
+  experimental](https://vuejs.org/v2/guide/comparison.html#Native-Rendering).
+
+- Although Derek has looked into Vue.js, no one on the team has extensive Vue.js
+  experience, so couldn't provide as detailed guidance.
+
+- Similar to React, a less-opinionated framework means that it'll be more
+  difficult for me to get a handle on best practices.
+
+- Of the four frameworks I considered, Vue.js is the newest, and although it
+  appears to be growing quickly its community is comparatively small.
+    - For context, the StackOverflow tags for the for frameworks show:
+        - Angular: ~120k questions
+        - React: ~90k questions
+        - Ember: ~22k questions
+        - Vue: ~20k questions (~9k for Vue 2.0, released September 2016)
 
 ## Decision
 
-Based on my review above, I recommend moving forward with **React**.
+Based on my review above, I recommend moving forward with **Vue.js**. To me,
+Vue seems to strike the right balance between being A) a new and exciting
+paradigm to learn and B) not requiring huge startup/investment costs. Even
+though Derek and Kathryn don't have extensive experience with Vue, my
+understanding is that Vue's focus on a simple set of core functions and low
+initial investment in learning means that Kathryn and Derek could still give
+feedback without having much experience, or could even familiarize themselves
+with the core concepts quickly enough to understand what I'm doing in detail.
 
 ## Status
 
 Currently in review.
 
 ## Consequences
+
+For me, the main contest was between Vue and Angular. As such, the consequences
+primarily have to do with the choice to use Vue instead of Angular. These
+consequences include:
+
+- It should be much faster for me to get started building the app itself.
+
+- DRIVER and the Ashlar reference app won't be built on the same framework.
+
+- Although choosing Vue for the demo app won't necessarily mean that I have to
+  use it to modernize the schema editor and the data collector app, it means
+  that I'm _most likely_ to do so, barring Vue being a complete disaster. This
+  introduces some path dependence, and further separates the Ashlar suite
+  from DRIVER development.
 
 ## Further reading
 
@@ -167,5 +239,5 @@ Some references I used while evaluating frameworks:
   16.3](https://kruschecompany.com/blog/post/angular-6versus-react-16.3)
   (May 2018)
 
-- Elm contributors, [An Introduction to Elm: Javascript
-  interop](https://guide.elm-lang.org/interop/javascript.htm) 
+- Vue.js contributors, [Comparison with Other
+  Frameworks](https://vuejs.org/v2/guide/comparison.html) (2018) 
