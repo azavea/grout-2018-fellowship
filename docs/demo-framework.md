@@ -69,34 +69,37 @@ contributors to the React project.
 
 - React is more of a library than a framework, and is not very opinionated about
   how to handle meat and potatoes things like AJAX calls
-  ([source](https://medium.freecodecamp.org/angular-2-versus-react-there-will-be-blood-66595faafd51#c87b).
+  ([source](https://medium.freecodecamp.org/angular-2-versus-react-there-will-be-blood-66595faafd51#c87b)).
   This means that it may be harder for me to get a handle on best practices quickly.
 
 - Related to the point above, React will likely have a less clear "path" to
   building the kind of app I want to build, which will incur more time
   researching appropriate packages.
 
-- Derek and Kathryn may not have as much experience in React as in Angular (?).
+- Derek and Kathryn have limited experience with React, and so won't be
+  able to provide as detailed guidance as they might with a framework like
+  Angular.
 
 - Although many posts cite React as being simpler to learn than Angular, the
-  learning curve seems like it will still be quite high, since I have to get
-  acquainted with JSX syntax alongside the full conceptual framework.
+  learning curve seems like it will still be quite steep, since I have to get
+  acquainted with the JSX syntax alongside React's conceptual framework.
 
 ### Angular
 
-[Angular](https://angular.io/) is a web app framework written in JavaScript,
-with TypeScript supported as a first-class citizen. Angular focuses on providing
-a full suite of opinionated tools for building complex, stateful web apps.
+[Angular](https://angular.io/) is a web app framework written in TypeScript,
+with both JavaScript and TypeScript supported as first-class languages. Angular
+focuses on providing a full suite of opinionated tools for building complex,
+stateful web apps.
 
 #### Pros
 
-- DRIVER is written in Angular 1.x, which has two important benefits:
+- DRIVER is written in AngularJS (Angular 1.x), which has two important benefits:
     1. Many of the existing Ashlar components, like the schema editor and
        the data collector, are Angular 1.x apps.
     2. Should DRIVER want to upgrade to Ashlar 2+ during the next round of
        development, it would be easy to integrate with any work I do to
        extend the Ashlar suite using Angular (e.g. [bringing the schema editor
-       up to date](https://github.com/azavea/ashlar-2018-fellowship/issues/21))
+       up to date](https://github.com/azavea/ashlar-2018-fellowship/issues/21)).
 
 - Derek and Kathryn are already very familiar with Angular, which would make
   code review faster and more effective.
@@ -109,13 +112,10 @@ a full suite of opinionated tools for building complex, stateful web apps.
 - Most of the "Angular vs. React" blog posts I was able to find come out in
   favor of React, for a number of reasons (see [further
   reading](#further-reading) for links). This doesn't necessarily sway me, since
-  I don't put much stock in hype, but a consistent criticism that came up in
-  every piece I read was that Angular relies heavily on keeping markup and
-  templating separate from JavaScript, which is a part of frontend development that
-  frustrates me me. Skimming the docs, I suspect I'll have less fun learning Angular than
-  I would learning other frameworks I considered (specifically React and Vue.js).
+  I don't put much stock in hype, but the opinion was consistent enough that it
+  made an impression on me.
 
-- Although TypeScript is not required to use Angular, all of the docs are
+- Although TypeScript is not required to use Angular, all of the Angular docs are
   written in TypeScript, and I would want to learn it
   for the sake of learning it anyway. While I'm interested in learning
   TypeScript, this would further increase the amount
@@ -135,7 +135,7 @@ using a standard model-view-controller (MVC) architecture.
 
 - Ember seems to rely on traditional MVC concepts like [routers, models, and
   views](https://guides.emberjs.com/release/getting-started/core-concepts/).
-  As a Django developer, I'll be comfortable with these concepts
+  Coming from a Django background, I'll be comfortable with these concepts
   out of the gate.
 
 #### Cons
@@ -159,8 +159,15 @@ with batteries included.
 
 #### Pros
 
-- Small, both in size (~20kb zipped/minified) and in setup (can simply
+- Small, both in size (~30kb zipped) and in setup (can simply
   include it in a `script` tag, or set up more complicated build procedures).
+
+- The Vue team considers it a priority to design the library such that it
+  [is incrementally adoptable](https://vuejs.org/v2/guide/index.html#What-is-Vue-js).
+  Compared to other frameworks, Vue aims to make it easy for the developer to
+  use only parts of Vue in an app. This seems appealing for potential libraries
+  like the schema editor and data collector, which we hope to be pluggable into
+  a variety of different applications.
 
 - Fast learning time: the docs suggest that it takes a developer typically less
   than a day to understand the key concepts and start building ([source](https://vuejs.org/v2/guide/comparison.html#Scale)).
@@ -186,7 +193,7 @@ with batteries included.
 
 - Of the four frameworks I considered, Vue.js is the newest, and although it
   appears to be growing quickly its community is comparatively small.
-    - For context, the StackOverflow tags for the for frameworks show:
+    - For context, the StackOverflow tags for the four frameworks show:
         - Angular: ~120k questions
         - React: ~90k questions
         - Ember: ~22k questions
@@ -203,6 +210,11 @@ initial investment in learning means that Kathryn and Derek could still give
 feedback without having much experience, or could even familiarize themselves
 with the core concepts quickly enough to understand what I'm doing in detail.
 
+In addition, the fact that the Vue team prioritizes incremental adoption seems
+ideal in this case, given that there's high uncertainty around what the Ashlar suite
+will look like in the medium- to long-term. Of the four frameworks, Vue seems
+to provide the lowest initial investment overhead.
+
 ## Status
 
 Currently in review.
@@ -215,13 +227,16 @@ consequences include:
 
 - It should be much faster for me to get started building the app itself.
 
+- Derek and Kathryn won't be able to provide as detailed guidance off-the-bat
+  as they may have with Angular.
+
 - DRIVER and the Ashlar reference app won't be built on the same framework.
 
 - Although choosing Vue for the demo app won't necessarily mean that I have to
   use it to modernize the schema editor and the data collector app, it means
-  that I'm _most likely_ to do so, barring Vue being a complete disaster. This
-  introduces some path dependence, and further separates the Ashlar suite
-  from DRIVER development.
+  that I'm _most likely_ to do so, barring a total disaster. Vue
+  still seems to be the best choice in terms of minimizing path dependence,
+  but this further separates the Ashlar suite from DRIVER development.
 
 ## Further reading
 
