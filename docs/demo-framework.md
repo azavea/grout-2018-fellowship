@@ -31,10 +31,10 @@ In evaluating frameworks, we're looking for one that will be:
 
 Based on these criteria, I evaluated four frameworks:
 
-- [React](#react)
+- [React + Redux](#react--redux)
 - [Angular](#angular)
 - [Ember](#ember)
-- [Vue.js](#vue.js)
+- [Vue.js + Vuex](#vuejs--vuex)
 
 Below, I review the pros and cons of these four frameworks.
 
@@ -44,7 +44,7 @@ Below, I review the pros and cons of these four frameworks.
 user interfaces. React focuses on providing a core library for building
 components in pure JavaScript (with a markup extension language called JSX),
 but it also comes with a large ecosystem of extensions for building full-featured
-web apps, including [Redux](https://redux.js.org/)), a state-management library
+web apps, including [Redux](https://redux.js.org/), a state-management library
 built by core contributors to the React project.
 
 #### Pros
