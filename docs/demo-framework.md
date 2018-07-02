@@ -38,18 +38,18 @@ Based on these criteria, I evaluated four frameworks:
 
 Below, I review the pros and cons of these four frameworks.
 
-### React
+### React + Redux
 
 [React](https://reactjs.org/) is a JavaScript library for building stateful
 user interfaces. React focuses on providing a core library for building
 components in pure JavaScript (with a markup extension language called JSX),
 but it also comes with a large ecosystem of extensions for building full-featured
-web apps, many of them (like [Redux](https://redux.js.org/)) built by core
-contributors to the React project.
+web apps, including [Redux](https://redux.js.org/)), a state-management library
+built by core contributors to the React project.
 
 #### Pros
 
-- The civic apps team uses React, and already has [well-established
+- The civic apps team uses React + Redux, and already has [well-established
   tooling](https://github.com/azavea/civic-apps-app-template) for it.
 
 - I've been interested in learning React for some time, and I've read the
@@ -70,19 +70,23 @@ contributors to the React project.
 - React is more of a library than a framework, and is not very opinionated about
   how to handle meat and potatoes things like AJAX calls
   ([source](https://medium.freecodecamp.org/angular-2-versus-react-there-will-be-blood-66595faafd51#c87b)).
-  This means that it may be harder for me to get a handle on best practices quickly.
+  The React + Redux pairing has more established patterns, particularly around
+  managing global state in the application, but still leaves many other
+  packaging decisions to the user. This means that it may be harder for me to
+  get a handle on best practices quickly.
 
-- Related to the point above, React will likely have a less clear "path" to
+- Related to the point above, React + Redux will likely have a less clear "path" to
   building the kind of app I want to build, which will incur more time
   researching appropriate packages.
 
-- Derek and Kathryn have limited experience with React, and so won't be
+- Derek and Kathryn have limited experience with React + Redux, and so won't be
   able to provide as detailed guidance as they might with a framework like
   Angular.
 
-- Although many posts cite React as being simpler to learn than Angular, the
+- Although many posts cite React + Redux as being simpler to learn than Angular, the
   learning curve seems like it will still be quite steep, since I have to get
-  acquainted with the JSX syntax alongside React's conceptual framework.
+  acquainted with the JSX syntax alongside the conceptual framework for both
+  React and Redux.
 
 ### Angular
 
@@ -150,16 +154,21 @@ using a standard model-view-controller (MVC) architecture.
 - Ember is [highly opinionated](https://vuejs.org/v2/guide/comparison.html#Ember),
   which could contribute to project overhead and startup costs.
 
-### Vue.js
+### Vue.js + Vuex
 
 [Vue.js](https://vuejs.org/) is a library and a framework for building
 web apps in JavaScript. Its focus is on composable views, providing a core
 library for this functionality that can optionally scale up to a full framework
 with batteries included.
 
+[Vuex](https://vuex.vuejs.org/) is a state-management
+library for building Vue.js apps, written by core contributors to Vue.js. Vuex
+provides Redux-like patterns for managing global state in stateful Vue.js
+applications.
+
 #### Pros
 
-- Small, both in size (~30kb zipped) and in setup (can simply
+- Vue.js is small, both in size (~30kb zipped) and in setup (can simply
   include it in a `script` tag, or set up more complicated build procedures).
 
 - The Vue team considers it a priority to design the library such that it
@@ -172,8 +181,10 @@ with batteries included.
 - Fast learning time: the docs suggest that it takes a developer typically less
   than a day to understand the key concepts and start building ([source](https://vuejs.org/v2/guide/comparison.html#Scale)).
 
-- Built on a standard HTML templating system, but also [supports
-  JSX](https://vuejs.org/v2/guide/comparison.html#HTML-amp-CSS).
+- Vue is built on a standard HTML templating system, but also [supports
+  JSX](https://vuejs.org/v2/guide/comparison.html#HTML-amp-CSS). This pattern
+  would allow me to get started quickly, but potentially move away from using
+  HTML templating if I have time.
 
 - Thorough, well-paced, and fun to read [documentation](https://vuejs.org/v2/guide/).
   Vue.js was the only framework I considered that offered [detailed
@@ -183,12 +194,14 @@ with batteries included.
 #### Cons
 
 - Native rendering is [still
-  experimental](https://vuejs.org/v2/guide/comparison.html#Native-Rendering).
+  experimental](https://vuejs.org/v2/guide/comparison.html#Native-Rendering),
+  so a hybrid mobile app in Vue is unlikely.
 
-- Although Derek has looked into Vue.js, no one on the team has extensive Vue.js
+- Although Derek has looked into Vue.js and is working on [one app that uses
+  it](https://github.com/azavea/cartwheel), no one on the team has extensive Vue.js
   experience, so couldn't provide as detailed guidance.
 
-- Similar to React, a less-opinionated framework means that it'll be more
+- Similar to React + Redux, a less-opinionated framework means that it'll be more
   difficult for me to get a handle on best practices.
 
 - Of the four frameworks I considered, Vue.js is the newest, and although it
@@ -201,7 +214,7 @@ with batteries included.
 
 ## Decision
 
-Based on my review above, I recommend moving forward with **Vue.js**. To me,
+Based on my review above, I recommend moving forward with **Vue.js + Vuex**. To me,
 Vue seems to strike the right balance between being A) a new and exciting
 paradigm to learn and B) not requiring huge startup/investment costs. Even
 though Derek and Kathryn don't have extensive experience with Vue, my
@@ -217,7 +230,7 @@ to provide the lowest initial investment overhead.
 
 ## Status
 
-Currently in review.
+Accepted.
 
 ## Consequences
 
