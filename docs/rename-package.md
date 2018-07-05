@@ -9,17 +9,33 @@ Since PyPi requires unique names for packages, this means that if we want to
 distribute our package on PyPi, we'll have to either:
 
 1. Convince the owners of `ashlar` to give it to us
-2. Come up with a new name for the project
+2. Name the PyPi package something similar to `ashlar` but slightly different,
+   like `ashlar-core`
+3. Come up with a new name for the project
 
 Option 1 seems unlikely, given the maturity of the ashlar package on PyPi and
-how recent the last release was (April 2018, less than six months ago). Instead,
-I believe that the best course of action is to choose option 2 and rename the project.
+how recent the last release was (April 2018, less than four months ago). Number
+2 is perfectly functional but frustrating from a branding and distribution perspective,
+since it has the potential to introduce some confusion and/or competition with
+the existing `ashlar` package.
+
+Instead, I believe that the best course of action is to choose option 3 and rename the project.
 This will require us to come up with a new name for Ashlar, a [notoriously
 difficult decision](https://martinfowler.com/bliki/TwoHardThings.html).
 
+Some options that I considered, all based on the idea of "flexible
+construction materials":
+
+- [Joist](https://en.wikipedia.org/wiki/Joist)
+- [Lintel](https://en.wikipedia.org/wiki/Lintel)
+- [Silicone](https://en.wikipedia.org/wiki/Silicone)
+
 ## Decision
 
-I propose that we rename the project to **Silicone**.
+I propose that we rename the project to **Silicone**. This decision is somewhat
+arbitrary; silicone is simply the name that sounds the best to me of the ones
+that I considered, and it's the one that I believe offers the closest allegory
+for the project.
 
 Silicone is a material widely known for its physical flexibility and its
 practical versatility. The [Wikipedia page for
