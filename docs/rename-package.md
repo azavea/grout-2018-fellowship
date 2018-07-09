@@ -29,48 +29,48 @@ construction materials":
 - [Joist](https://en.wikipedia.org/wiki/Joist)
 - [Lintel](https://en.wikipedia.org/wiki/Lintel)
 - [Silicone](https://en.wikipedia.org/wiki/Silicone)
+- [Grout](https://en.wikipedia.org/wiki/Grout)
 
 ## Decision
 
-I propose that we rename the project to **Silicone**. This decision is somewhat
-arbitrary; silicone is simply the name that sounds the best to me of the ones
-that I considered, and it's the one that I believe offers the closest allegory
-for the project.
+I propose that we rename the project to **Grout**. Among the options above,
+"Grout" is the name that sounds the best to me, and it's the one that I believe
+offers the closest allegory for the project.
 
-Silicone is a material widely known for its physical flexibility and its
-practical versatility. The [Wikipedia page for
-silicone](https://en.wikipedia.org/wiki/Silicone) lists a wide variety of
-different uses for silicone, ranging from consumer products to
-construction materials.
+Grout is a construction material widely known for its physical flexibility and its
+practical versatility: a fluid concrete used to create waterproof seals in
+masonry structures.
 
-The name "Silicone" respects the origins of Ashlar by making reference to a
-construction material, but unlike "Ashlar", the name "Silicone" emphasizes the
-core features of the project -- its flexibility and versatility as a base material
-with which more complex products can be built.
+Some advantages of the name "Grout" include:
 
-As an added bonus, "the Silicone suite" (as a reference to the multiple tools
-that can be used with the library) is a nice alliteration, as well.
+- "Grout" respects the origins of the project by referencing a masonry material,
+  but unlike "Ashlar", the name "Grout" emphasizes the core features of the project
+  -- its flexibility and versatility as a base material
+  that can scaffold and tie together much more complex projects.
 
-Perhaps most importantly, `silicone` is available on PyPi, and [I'm currently
-squatting on it](https://pypi.org/project/silicone/).
+- "Grout" is one syllable (one fewer than "Ashlar") and the easiest word to
+  pronounce among the options I considered.
+  
+- Perhaps most importantly, `grout` is [available on
+  PyPi](https://pypi.org/project/grout).
 
 ## Status
 
-Currently drafting the ADR. After that, this will be in review.
+In review.
 
 ## Consequences
 
 - After changing the name, we'll have to take a number of steps to update the
   project:
     - Create a new repo for the project
-    - Fork Ashlar and move the code over to Silicone
-    - Update the code to refer to `silicone` instead of `ashlar` internally in
+    - Fork Ashlar and move the code over to Grout 
+    - Update the code to refer to `grout` instead of `ashlar` internally in
     all imports and namespaces
     - Rename repos that reference the name "Ashlar", including;
         - `ashlar-2018-fellowship`
         - `ashlar-blueprint`
 
-- Since "Ashlar" is a more esoteric name than "Silicone", the package may lose SEO.
+- Since "Ashlar" is a more esoteric name than "Grout", the package may lose SEO.
 
 - We'll be able to distribute the project on PyPi with a short and memorable
   name.
