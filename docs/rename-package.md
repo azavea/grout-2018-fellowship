@@ -56,7 +56,7 @@ Some advantages of the name "Grout" include:
 
 ## Status
 
-In review.
+Accepted.
 
 ## Consequences
 
