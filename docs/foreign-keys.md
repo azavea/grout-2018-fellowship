@@ -103,7 +103,9 @@ Null pointers are a classic problem with non-relational data stores: if document
 A points to document B, and then document B is removed from the system, NoSQL
 databases offer no system for automatically resolving the null reference
 (whether by raising an error, setting a default, or simply storing a `NULL`
-value for the foreign key).
+value for the foreign key). In the example given above, we could imagine a user
+deleting an Event referenced by a Poster, and then the UUID stored in
+Poster.event would not reference a coherent entity in the database.
 
 Null pointers are indeed a problem with Record-to-Record foreign keys, but this
 problem is already endemic to Grout: if a field is removed from a schema during
@@ -122,7 +124,9 @@ interface in a way that is common to all null reference problems in Grout.
 
 #### Lookups
 
-Since 
+Since Record-to-Record foreign keys would store UUIDs (as strings) for the
+referent Record, lookups should be no different than for any other Grout field.
+
 
 #### Validation
 
@@ -133,11 +137,11 @@ references](https://python-jsonschema.readthedocs.io). It seems relatively
 straightforward to extend this resolver to check references by pinging the Grout
 API.
 
-Pros:
+- Pros:
     - Easy integration with existing jsonschema validation
     - Minimal changes to the application code
 
-Cons:
+- Cons:
     - Extending a third-party package risks introducing technical debt
 
 #### Indexing
@@ -157,10 +161,10 @@ Since we currently only use the containment operator in Grout anyway, I see no
 reason why we wouldn't be able to use the most performant `jsonb_path_ops` GIN
 index type.
 
-Pros:
+- Pros:
     - Seems like jsonb supports the kind of indexing we need out of the box
 
-Cons:
+- Cons:
     - I don't understand indexing very well, and there's a chance that I'm
       reading the docs too optimistically
     - Hard to get a sense of actual performance without running tests
