@@ -33,6 +33,8 @@ including:
 - Google Cloud Firestore
 - AWS DynamoDB
 
+After eliminating options that cannot support the basic requirements of Grout,
+I then evaluate cloud providers.
 
 ### MongoDB
 
@@ -48,7 +50,6 @@ including:
     - Supports [AND conditions](https://docs.mongodb.com/manual/tutorial/query-embedded-documents/#specify-and-condition)
     - Supports [logical OR conditions](https://docs.mongodb.com/manual/reference/operator/query/or/)
 
-
 ### CouchDB
 
 1. Geospatial support
@@ -63,22 +64,18 @@ including:
 3. Querying JSON
     - Query capability is powerful but [quite
       esoteric](http://docs.couchdb.org/en/2.1.2/query-server/protocol.html#map-doc)
-    - JavaScript API: [PouchDB](https://pouchdb.com/)
-
-4. Configuration
-    - Running your own instance, [extremely complicated](http://docs.couchdb.org/en/2.1.2/config/index.html)
-
-5. Cost
-    - Pretty old; hard to find hosted options these days
-    - [A guide for doing it on AWS](https://aws.amazon.com/quickstart/architecture/couchbase/)
+    - Third-party JavaScript API: [PouchDB](https://pouchdb.com/)
 
 ### Google Cloud Firestore
 
+Note: Still in beta.
+
 1. Geospatial support
-    - Has a type for lat/lng coordinates (presumably WebMercator)
+    - Has a type for [lat/lng coordinates](https://cloud.google.com/firestore/docs/concepts/data-types)
+    (presumably WebMercator? Not much information)
 
 2. Querying geospatial data
-    - Seems to not be possible? No docs.
+    - Seems to not be possible -- no docs, at least.
 
 3. Querying JSON
     - [Some serious limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations):
@@ -93,6 +90,37 @@ including:
 2. Geospatial queries
     - Relies on [a third-party library that is sparsely
       documented](https://blog.corkhounds.com/2017/06/19/geospatial-queries-on-aws-dynamodb/).
+
+3. Querying JSON
+    - Only finds items attached to primary key
+    - Queries can retrieve a maximum of 1MB of data
+        - What about images?
+    - True to AWS form, [docs are a slog to decipher](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html)
+        - Accordingly, I'm not confident I fully understand the capability here
+
+### Cloud providers
+
+There are two main cloud providers for MongoDB: MongoDB Atlas, a hosting service
+provided by MongoDB itself, and mLab, a third-party service.
+
+#### mLab
+
+- Free, non-expiring [sandbox account](https://mlab.com/plans/pricing/#plan-type=sandbox)
+    - Up to 500MB storage
+    - Shared hosting, variable RAM
+
+- Pinned to MongoDB 3.6 as of July 20
+
+- AWS backend
+
+#### MongoDB Atlas
+
+- See [free tier limitations](https://docs.atlas.mongodb.com/reference/free-shared-limitations/).
+
+Comparisons references:
+
+- [Comparison in favor of MongoDB Atlas](https://www.mongodb.com/cloud/atlas/compare)
+- [Comparison in favor of mLab](https://mlab.com/mlab-vs-atlas/)
 
 ## Decision
 
