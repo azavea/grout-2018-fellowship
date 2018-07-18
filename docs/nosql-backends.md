@@ -26,17 +26,18 @@ bring to the project, including:
 4. How easy the backend is to configure and deploy
 5. How cheap it is to use, if not free 
 
-In this document, I look at a few different options for NoSQL backends,
-including:
+In this document, I look at a few different options for [NoSQL
+backends](#backends), including:
 
 - MongoDB
 - CouchDB
 - Google Cloud Firestore
 - AWS DynamoDB
+- JSONBin
 
 After eliminating options that cannot support the basic requirements of Grout,
-I then evaluate cloud providers. Finally, I consider the value that a NoSQL
-backend would bring to the project.
+I then evaluate [cloud providers](#providers). Finally, I [consider the
+value](#value) that a NoSQL backend would bring to the project.
 
 ### Backends 
 
@@ -162,7 +163,30 @@ AWS products.
     - [No schema validation
       whatsoever](https://stackoverflow.com/questions/42563529/is-there-a-way-to-enforce-a-schema-constraint-on-an-aws-dynamodb-table).
 
-### Cloud providers
+#### JSONBin
+
+JSONBin is a [JSON-store-as-a-service](https://jsonbin.org/) that allows
+developers to easily store and retrieve JSON data over a REST API. In this
+sense, it is most like a serverless JSON datastore. It requires
+no configuration, and has a built-in permissions and token authentication
+system. Its main focus is simplicity and ease-of-use.
+
+1. Geospatial support ✔️
+    - Since JSONBin stores documents as pure JSON, GeoJSON is inherently
+      supported.
+
+2. Geospatial queries ❌
+    - Querying is [on the product roadmap](https://jsonbin.io/roadmap), but
+      is not currently supported.
+
+3. Querying JSON ❌
+    - Querying is [on the product roadmap](https://jsonbin.io/roadmap), but
+      is not currently supported.
+
+4. JSONSchema support ❌
+    - No mention of validation in the [API documentation](https://jsonbin.io/api-reference).
+
+### Providers
 
 Based my research summarized above, **MongoDB is the only backend I considered
 that supports all project requirements.** As such, I only considered cloud
@@ -197,6 +221,8 @@ why it's better than mLab](https://www.mongodb.com/cloud/atlas/compare).
     - [Integrates with AWS](https://docs.atlas.mongodb.com/getting-started/#for-cloud-provider-region-select-your-preferred-cloud-provider).
     - [Slightly complicated to set up](https://docs.atlas.mongodb.com/getting-started/),
       but still very easy relative to hosting your own database.
+    - Integrates with [MongoDB Stitch](https://docs.mongodb.com/stitch/), a
+      serverless backend-as-a-service for MongoDB applications.
 
 - **Cons**:
     - The free tier comes with [some major
@@ -206,35 +232,68 @@ why it's better than mLab](https://www.mongodb.com/cloud/atlas/compare).
         - Max throughput of 100 writes/sec.
         - Data transfer limit of 10GB/week.
 
+### Value
+
+The two main goals of supporting a NoSQL backend include:
+
+1. Making Grout easier to configure and deploy
+2. Abstracting the data model such that it could be applied to more backends
+   in the future
+
+I'll look at each of these goals in detail.
+
+#### Making Grout easier to configure and deploy
+
+- **Pros**:
+    - MongoDB is slightly easier to configure than Postgres. However, it
+      still requires [some configuration](https://docs.mongodb.com/manual/reference/configuration-options/)
+      from the developer.
+
+- **Cons**:
+    - A database server still must be deployed to interact with the database.
+      This means that the developer must still deploy a database and a database
+      server in addition to the frontend.
+    - MongoDB offers a serverless framework, MongoDB Stitch, which exposes an API
+      [that can be queried from the client 
+      side](https://docs.mongodb.com/stitch/getting-started/configure-rules-based-access-to-mongodb/).
+      Using a "serverless" pattern like this would be a substantial improvement on
+      the existing development framework, but moving in this direction would
+      require the Grout NoSQL backend to be tightly coupled to a certain provider
+      (MongoDB Stitch), and would introduce another layer of integration that would
+      slow the development process.
+
+**Overall score**: Medium-low.
+
+#### Abstracting the data model
+
+- **Pros**:
+    - Using MongoDB would let us represent the data model in JSONSchema
+      and validate it on the backend. This would be a big win for
+      generalizability.
+
+- **Cons**:
+    - JSONSchema is not widely supported among NoSQL providers, according to
+      my research.
+
+**Overall score**: Medium.
+
 ## Decision
 
-Based on my research, I recommend building the first NoSQL backend on top
-of **MongoDB**. While there is promising work being done on many nonrelational
-databases, MongoDB is currently the only NoSQL database that satisfies
-all project requirements.
+Based on my research, I recommend that if we move forward with a NoSQL backend,
+we should build it on top of **MongoDB**. While there is promising work being
+done on many nonrelational databases, MongoDB is currently the only NoSQL database
+that satisfies all project requirements.
 
-For cloud hosting, I recommend using **mLab**. While mLab and MongoDB Atlas
-offer nearly identical products, mLab has a more permissive free tier, which
-will be useful for prototyping the backend. Since both services can use AWS as an
-infrastructure provider, switching costs should be low in the event that mLab
-becomes a significantly worse offering than Atlas.
+While MongoDB satisifes the project requirements, however, I'm still uncertain
+whether the value proposition is strong enough that we should prioritize this
+work. It seems to me that MongoDB will only present a strong value proposition
+if the backend component can be eliminated completely from the infrastructure
+provisioning; otherwise, deploying a NoSQL database requires essentially the
+same amount of work. With MongoDB, this is technically possible with the **Atlas and
+Stitch serverless stack**; however, choosing this stack will require
+integrating with two separate services, making the work much more complex and
+introducing an undesirable coupling to the application.
 
 ## Status
 
 In review.
-
-## Consequences
-
-The consequences of this decision include:
-
-- Grout will offer two backends: Postgres and MongoDB. While MongoDB still
-  requires [some configuration](https://docs.mongodb.com/manual/reference/configuration-options/),
-  the dependency will be much less heavy than Postgres.
-
-- Since MongoDB's data model much more closely matches the Grout data model,
-  and MongoDB 
-  there is an opportunity to elide the server component of Grout entirely
-  (currently encapsulated in the [`Grout Server`](https://github.com/azavea/grout-server)
-  project). With a serverless provider like MongoBD Stitch or AWS Lambda,
-  clients could potentially communicate with the database directly instead of
-  having to go through the REST API.
