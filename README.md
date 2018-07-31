@@ -8,14 +8,17 @@ This repo stores issues, project boards, and documentation for the
 
 The following documentation is included in the `docs` directory:
 
-- `docs/concept-map.md`: @jeancochrane's initial understanding of the Grout
+- [`docs/concept-map.md`](./docs/concept-map.md): @jeancochrane's initial understanding of the Grout
   (formerly known as "Ashlar") suite.
 
-- `docs/demo-framework.md`: An architecture decision record (ADR) documenting
+- [`docs/demo-framework.md`](./docs/demo-framework.md): An architecture decision record (ADR) documenting
   the decision to use Vue.js for the demo app framework.
 
-- `docs/rename-package.md`: An ADR documenting the decision to rename the
+- [`docs/rename-package.md`](./docs/rename-package.md): An ADR documenting the decision to rename the
   package from "Ashlar" to "Grout".
 
-- `docs/foreign-keys.md`: An ADR documenting the reasons and requirements for
+- [`docs/foreign-keys.md`](./docs/foreign-keys.md): An ADR documenting the reasons and requirements for
   implementing a Record-to-Record foreign key field.
+
+- [`docs/nosql-backends.md`](./docs/nosql-backends.md): An ADR presenting
+  research into possible NoSQL backends and service providers for Grout. 
