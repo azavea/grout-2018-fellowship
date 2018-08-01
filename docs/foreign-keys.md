@@ -161,6 +161,15 @@ Some import considerations for this pattern:
   or not they are active, and ideally the data collection UI should allow the
   Record to be filled out by an autocomplete search.
 
+- In applications where the list of available Records can grow very large,
+  performance of the `referents.json` endpoints could cause problems with
+  client wait time and server memory. These endpoints should be profiled
+  for performance.
+
+- This pattern assumes that the `referents.json` endpoints are fully public,
+  which could be a problem for applications with sensitive data. In an ideal
+  world, an admin would be able to set the permissions for these endpoints.
+
 #### Requirements
 
 For Record-to-Record foreign keys to be workable, they need to permit three basic
